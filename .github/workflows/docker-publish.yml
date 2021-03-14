@@ -1,0 +1,27 @@
+name: Docker Build
+
+on:
+  push:
+    # Publish `main` as Docker `latest` image.
+    branches:
+      - main
+
+jobs:
+  # Run tests.
+  # See also https://docs.docker.com/docker-hub/builds/automated-testing/
+  test:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Azure Container Registry Login
+        uses: Azure/docker-login@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Run tests
+        run: |
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/powershell-docker-test:latest --file Dockerfile .
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/powershell-docker-test:latest
