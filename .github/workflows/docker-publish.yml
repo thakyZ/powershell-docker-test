@@ -46,7 +46,7 @@ jobs:
               if ($dockerfiles[$i].IndexOf(".dev.") -eq -1) {
                 $versionBuildArg = "--build-arg VERSION=$($version)"
               }
-              $buildCmd = "docker build -t $($currImage) -f $($dockerfiles[$i]) --build-arg BASE=$($targets[$j]) --build-arg BYOND_MAJOR=$($BYOND_MAJOR) --build-arg BYOND_MINOR=$($BYOND_MINOR) --isolation hyperv $versionBuildArg ."
+              $buildCmd = "docker build -t $($currImage) -f $($dockerfiles[$i]) --build-arg BASE=$($targets[$j]) --build-arg BYOND_MAJOR=$($BYOND_MAJOR) --build-arg BYOND_MINOR=$($BYOND_MINOR) $versionBuildArg ."
               $buildCmds.Add($buildCmd)
 
               $imgPushCmd = "docker push $($currImage)"
