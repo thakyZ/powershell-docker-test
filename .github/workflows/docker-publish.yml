@@ -24,7 +24,7 @@ jobs:
       - name: Run Build Environment
         run: |
           $version = "latest"
-          $images = @("citadel-station-13")
+          $images = @("powershell-docker-test")
           $targets = @("1809")
           $dockerfiles = @("Dockerfile")
           $BYOND_MAJOR = 513
