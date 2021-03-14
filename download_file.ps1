@@ -1,4 +1,5 @@
-(Invoke-WebRequest -Uri "https://github.com/thakyZ/powershell-docker-test/raw/sample/sample-zip-file.zip" -UseBasicParsing -OutFile dummy.zip &&
+$branch="sample"
+(Invoke-WebRequest -Uri "https://github.com/thakyZ/powershell-docker-test/raw/${branch}/sample-zip-file.zip" -UseBasicParsing -OutFile dummy.zip &&
 Expand-Archive dummy.zip -DestinationPath . &&
 Copy-Item -Path sample-zip-file\* -Recurse -Destination . &&
 Remove-Item dummy.zip &&
